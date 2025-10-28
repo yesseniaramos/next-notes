@@ -3,8 +3,9 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "prisma generate && next dev --turbopack",
-		"build": "next build --turbopack",
+		"dev": "next dev --turbopack",
+		"build": "prisma generate && next build --turbopack",
+		"postinstall": "prisma generate",
 		"start": "next start",
 		"lint": "eslint",
 		"migrate": "pnpm dlx prisma generate && env $(cat .env.local | xargs) pnpm dlx prisma migrate dev"

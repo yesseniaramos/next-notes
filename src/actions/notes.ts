@@ -6,6 +6,12 @@ import { handleError } from "@/lib/utils";
 import openai from "@/openai";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
+type Note = {
+    text: string;
+    createdAt: Date;
+    updatedAt: Date
+}
+
 export const createNoteAction = async (noteId: string) => {
     try { 
         const user = await getUser();
@@ -60,11 +66,7 @@ export const deleteNoteAction = async (noteId: string) => {
 }
 
 export const askAIAboutNotesAction = async (newQuestions: string[], responses: string[]) => {
-    type Note = {
-        text: string;
-        createdAt: Date;
-        updatedAt: Date
-    }
+    
     const user = await getUser();
     if (!user) throw new Error("You must be logged in to ask AI questions");
     
