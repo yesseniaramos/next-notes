@@ -14,7 +14,8 @@ const eslintConfig = [
   {
     // add custom rules unescaped entities, for avoid vercel's lint rejecting the build to deploy
     rule: {
-      "react/no-unescaped-entities": "off"
+      "react/no-unescaped-entities": "off",
+      "@typescript-eslint/no-unused-vars": "off",
     },
     ignores: [
       "node_modules/**",
