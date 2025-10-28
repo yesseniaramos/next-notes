@@ -13,7 +13,7 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     // add custom rules unescaped entities, for avoid vercel's lint rejecting the build to deploy
-    rule: {
+    rules: {
       "react/no-unescaped-entities": "off",
       "@typescript-eslint/no-unused-vars": "off",
     },

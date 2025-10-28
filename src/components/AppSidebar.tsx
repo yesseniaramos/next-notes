@@ -6,6 +6,7 @@ import {
   SidebarGroupLabel,
 } from "@/components/ui/sidebar"
 import { prisma } from "@/db/prisma";
+// eslint-disable-next-line
 import { Note } from "@prisma/client";
 import Link from "next/link";
 import SidebarGroupContent from "./SidebarGroupContent";
