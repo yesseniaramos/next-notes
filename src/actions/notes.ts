@@ -60,7 +60,11 @@ export const deleteNoteAction = async (noteId: string) => {
 }
 
 export const askAIAboutNotesAction = async (newQuestions: string[], responses: string[]) => {
-    
+    type Note = {
+        text: string;
+        createdAt: Date;
+        updatedAt: Date
+    }
     const user = await getUser();
     if (!user) throw new Error("You must be logged in to ask AI questions");
     
@@ -76,8 +80,8 @@ export const askAIAboutNotesAction = async (newQuestions: string[], responses: s
 
     const formattedNotes = notes
     .map(
-        (note) => 
-            `
+        (note: Note) => 
+        `
         Text: ${note.text}
         Created at: ${note.createdAt}
         Last Updated: ${note.updatedAt}
