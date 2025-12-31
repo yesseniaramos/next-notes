@@ -1,5 +1,5 @@
 'use client';
-import{ useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 import { CardContent, CardFooter } from './ui/card';
 import { Label } from './ui/label';
@@ -22,15 +22,15 @@ function AuthForm({ type }: Props) {
 
     const [isPending, startTransition] = useTransition();
 
-    const handleSubmit = (formData: FormData) =>{
-        console.log(isLoginForm);
-        startTransition( async() => {
+    const handleSubmit = (formData: FormData) => {
+
+        startTransition(async () => {
             const email = formData.get("email") as string;
-            const password =formData.get("password") as string;
+            const password = formData.get("password") as string;
             let errorMessage;
             let title;
             let description;
-            console.log(isLoginForm);
+
             if (isLoginForm) {
                 errorMessage = (await loginAction(email, password)).errorMessage;
                 title = "Logged in";
@@ -45,7 +45,7 @@ function AuthForm({ type }: Props) {
 
             }
 
-            if (!errorMessage){
+            if (!errorMessage) {
                 toast.success(title, { description });
                 router.replace("/");
             } else {
@@ -57,9 +57,9 @@ function AuthForm({ type }: Props) {
     };
 
     return (
-        <form action={ handleSubmit }>
+        <form action={handleSubmit}>
             <CardContent className="grid gap-4">
-                <div className ="flex flex-col space-y-1.5">
+                <div className="flex flex-col space-y-1.5">
                     <Label htmlFor='email'>
                         Email
                     </Label>
@@ -69,11 +69,11 @@ function AuthForm({ type }: Props) {
                         type="email"
                         placeholder="Enter your email"
                         required
-                        disabled={ isPending }
+                        disabled={isPending}
 
                     />
                 </div>
-                <div className ="flex flex-col space-y-1.5">
+                <div className="flex flex-col space-y-1.5">
                     <Label htmlFor='password'>
                         Password
                     </Label>
@@ -83,7 +83,7 @@ function AuthForm({ type }: Props) {
                         type="password"
                         placeholder="Enter your password"
                         required
-                        disabled={ isPending }
+                        disabled={isPending}
 
                     />
                 </div>
@@ -99,12 +99,12 @@ function AuthForm({ type }: Props) {
                     }
                 </Button>
                 <p className="text-xs">
-                    { isLoginForm ? "Don't have an account yet" : "Already have an account?"}{" "}
-                    <Link 
-                        href={ isLoginForm ? "/sign-up" : "/login" }
-                        className={`text-blue-500 underline ${isPending ? "pointer-events-none opacity-50" : "" }`}
+                    {isLoginForm ? "Don't have an account yet" : "Already have an account?"}{" "}
+                    <Link
+                        href={isLoginForm ? "/sign-up" : "/login"}
+                        className={`text-blue-500 underline ${isPending ? "pointer-events-none opacity-50" : ""}`}
                     >
-                    { isLoginForm ? "Sign Up" : "Login" }
+                        {isLoginForm ? "Sign Up" : "Login"}
                     </Link>
                 </p>
             </CardFooter>
