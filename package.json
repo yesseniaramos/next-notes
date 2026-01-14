@@ -8,10 +8,10 @@
 		"build:local": "prisma generate && next build --turbopack",
 		"start": "next start",
 		"lint": "eslint",
-		"migrate": "pnpm dlx prisma generate && env $(cat .env.local | xargs) pnpm dlx prisma migrate dev"
+		"migrate": "pnpm dlx prisma generate && env $(cat .env | xargs) pnpm dlx prisma migrate dev"
 	},
 	"prisma": {
-		"schema": "src/db/schema.prisma"
+		"schema": "./src/db/schema"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.19.0",
