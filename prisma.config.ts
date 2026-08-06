@@ -7,7 +7,4 @@ export default {
     path: "src/db/migrations",
     seed: 'tsx src/db/seed.ts',
   },
-  datasource: {
-    url: process.env.DATABASE_URL!
-  }
 } satisfies PrismaConfig;
