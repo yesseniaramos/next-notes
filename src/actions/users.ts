@@ -49,15 +49,23 @@ export const signUpAction = async (email: string, password: string) => {
         if(!userId) throw new Error("Error signing up");
 
         // add user to database
-        await prisma.user.create({
-            data: {
-                id: userId,
-                email: email,
-            },
-        });
+        try {
+            await prisma.user.create({
+                data: {
+                    id: userId,
+                    email: email,
+                },
+            });
+        } catch (dbError) {
+            if (dbError instanceof Error && dbError.message.includes("Unique constraint failed")) {
+                console.error("Sign-up DB error:", dbError);
+                return { errorMessage: "There's a problem, please verify your email" };
+            }
+            throw dbError;
+        }
 
         return { errorMessage: null };
-    } catch(error) { 
+    } catch(error) {
         return handleError(error);
     }
 }
